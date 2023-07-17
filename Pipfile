@@ -10,6 +10,7 @@ pillow = "*"
 django-uuslug = "*"
 
 [dev-packages]
+djlint = "*"
 
 [requires]
 python_version = "3.11"
