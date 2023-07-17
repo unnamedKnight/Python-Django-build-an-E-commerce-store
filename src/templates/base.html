@@ -84,13 +84,13 @@
                 {% endif %}
                 &nbsp; &nbsp; &nbsp;
                 <li class="nav-item">
-                    {% comment %} <a type="button"
+                     <a type="button"
                        role="button"
-                       href="{% url 'cart-summary' %}"
+                       href="{% url 'cart_summary' %}"
                        class="btn btn-outline-secondary">
                         <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
                         &nbsp;
-                        <div id="cart-qty" class="d-inline-flex">
+                        {% comment %} <div id="cart-qty" class="d-inline-flex">
                             {% with qty_amount=cart|length %}
                                 {% if qty_amount > 0 %}
                                     {{ qty_amount }}
@@ -98,8 +98,8 @@
                                     0
                                 {% endif %}
                             {% endwith %}
-                        </div>
-                    </a> {% endcomment %}
+                        </div> {% endcomment %}
+                    </a>
                 </li>
                 &nbsp; &nbsp; &nbsp;
             </ul>
