@@ -41,6 +41,7 @@
                        data-bs-toggle="dropdown"
                        aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                         <li>
                             <a class="dropdown-item" href="{% url 'store' %}">All</a>
                         </li>
@@ -57,33 +58,33 @@
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="btn btn-alert navbar-btn text-white"
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
                            type="button"
-                           href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a>
+                           href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a> {% endcomment %}
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="btn btn-alert navbar-btn text-white"
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
                            type="button"
-                           href="{% url 'register' %}">Register</a>
+                           href="{% url 'register' %}">Register</a> {% endcomment %}
                     </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="btn btn-alert navbar-btn text-white"
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
                            type="button"
-                           href="{% url 'user-logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a>
+                           href="{% url 'user-logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a> {% endcomment %}
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="btn btn-alert navbar-btn text-white"
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
                            type="button"
-                           href="{% url 'my-login' %}">Login</a>
+                           href="{% url 'my-login' %}">Login</a> {% endcomment %}
                     </li>
                 {% endif %}
                 &nbsp; &nbsp; &nbsp;
                 <li class="nav-item">
-                    <a type="button"
+                    {% comment %} <a type="button"
                        role="button"
                        href="{% url 'cart-summary' %}"
                        class="btn btn-outline-secondary">
@@ -98,7 +99,7 @@
                                 {% endif %}
                             {% endwith %}
                         </div>
-                    </a>
+                    </a> {% endcomment %}
                 </li>
                 &nbsp; &nbsp; &nbsp;
             </ul>

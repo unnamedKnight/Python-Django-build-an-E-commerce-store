@@ -1,5 +1,6 @@
 from django.db import models
 from uuslug import uuslug
+from django.urls import reverse
 
 
 # Create your models here.
@@ -14,8 +15,7 @@ class Category(models.Model):
         return self.name
 
     # def get_absolute_url(self):
-
-    #     return reverse('list-category', args=[self.slug])
+    #     return reverse("list-category", args=[self.slug])
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.name, instance=self)
@@ -39,11 +39,8 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-
-    #     return reverse('product-info', args=[self.slug])
-
-
+    def get_absolute_url(self):
+        return reverse("product_info", args=[self.slug])
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self)
