@@ -41,7 +41,6 @@
                        data-bs-toggle="dropdown"
                        aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
                         <li>
                             <a class="dropdown-item" href="{% url 'store' %}">All</a>
                         </li>
@@ -58,39 +57,31 @@
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
-                           type="button"
-                           href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a> {% endcomment %}
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a> {% endcomment %}
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
-                           type="button"
-                           href="{% url 'register' %}">Register</a> {% endcomment %}
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'register' %}">Register</a> {% endcomment %}
                     </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
-                           type="button"
-                           href="{% url 'user-logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a> {% endcomment %}
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'user-logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a> {% endcomment %}
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        {% comment %} <a class="btn btn-alert navbar-btn text-white"
-                           type="button"
-                           href="{% url 'my-login' %}">Login</a> {% endcomment %}
+                        {% comment %} <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'my-login' %}">Login</a> {% endcomment %}
                     </li>
                 {% endif %}
                 &nbsp; &nbsp; &nbsp;
                 <li class="nav-item">
-                     <a type="button"
+                    <a type="button"
                        role="button"
                        href="{% url 'cart_summary' %}"
                        class="btn btn-outline-secondary">
                         <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
                         &nbsp;
-                        {% comment %} <div id="cart-qty" class="d-inline-flex">
+                        <div id="cart-qty" class="d-inline-flex">
                             {% with qty_amount=cart|length %}
                                 {% if qty_amount > 0 %}
                                     {{ qty_amount }}
@@ -98,7 +89,7 @@
                                     0
                                 {% endif %}
                             {% endwith %}
-                        </div> {% endcomment %}
+                        </div>
                     </a>
                 </li>
                 &nbsp; &nbsp; &nbsp;

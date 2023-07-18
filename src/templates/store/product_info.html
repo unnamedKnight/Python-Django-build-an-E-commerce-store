@@ -57,27 +57,75 @@
         <br>
     </div>
     <script>
-    $document.on('click', 'add-button', function(e) {
+
+
+    /* Somehow the following code doesn't work at all
+
+    $(document).on('click', '#add-button', function(e) {
         e.preventDefault();
         $.ajax({
             type: 'POST',
             url: '{% url "cart_add" %}',
             data:{
-               {% comment %} getting the value of the #add-button {% endcomment %}
+
                 product_id:$('#add-button').val(),
                 product_quantity:$('#select option:selected').text(),
-                csrfmiddlewaretoken: "{% csrf_token %}",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
             },
             success:function(json){
-
+                console.log(json);
+                document.getElementById('cart-qty').textContent = json.quantity
             }
 
             error:function(xhr, errmsg, err){
-                
+
             }
         });
     })
+
+    */
+
+    $(document).on('click', '#add-button', function(e){
+
+        e.preventDefault();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart_add" %}',
+            data: {
+
+                product_id: $('#add-button').val(),
+                product_quantity: $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+
+                document.getElementById("cart-qty").textContent = json.quantity
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+
+
+            }
+
+    });
+
+
+    })
+
+
+
+
+
 
     </script>
 {% endblock %}
