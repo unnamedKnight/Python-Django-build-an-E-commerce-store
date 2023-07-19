@@ -38,7 +38,7 @@
                                         <div class="col-12">
                                             <label for="select">Qty</label>
                                             &nbsp;
-                                            <select id="">
+                                            <select id="select{{ product.id }}">
                                                 <option selected>{{ item.quantity }}</option>
                                                 <option value="">1</option>
                                                 <option value="">2</option>
@@ -152,6 +152,51 @@
 
     })
 
+
+    // Update button
+
+    $(document).on('click', '.update-button', function(e){
+
+        e.preventDefault();
+
+        let theproductid = $(this).data('index')
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart_update" %}',
+            data: {
+
+                product_id: $(this).data('index'),
+                product_quantity: $('#select' + theproductid + ' option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+
+                location.reload();
+
+
+                document.getElementById("cart-qty").textContent = json.quantity
+
+                //document.getElementById("total").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+
+
+            }
+
+        });
+
+
+    })
 
 
     </script>
