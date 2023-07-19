@@ -9,6 +9,8 @@ python-dotenv = "*"
 pillow = "*"
 django-uuslug = "*"
 django-crispy-forms = "*"
+crispy-bootstrap4 = "*"
+django-utils-six = "*"
 
 [dev-packages]
 djlint = "*"
