@@ -1,6 +1,7 @@
 from typing import Any
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.forms.widgets import PasswordInput, TextInput
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
@@ -24,3 +25,8 @@ class CreateUserForm(UserCreationForm):
             raise forms.ValidationError("Email is too long.")
 
         return email
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput())
+    password = forms.CharField(widget=PasswordInput())
