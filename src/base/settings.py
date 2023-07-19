@@ -47,11 +47,14 @@ INSTALLED_APPS = [
     "cart.apps.CartConfig",
     "account.apps.AccountConfig",
     # third party packages
-    'crispy_forms',
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,8 +79,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'store.views.categories',
-                'cart.context_processors.cart',
+                "store.views.categories",
+                "cart.context_processors.cart",
             ],
         },
     },
@@ -132,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "base_app_name/static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "base/static")]
 # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "media/"
 # MEDIA_ROOT has to be a string, not a list or tuple
@@ -142,3 +145,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+"""Console backend¶
+Instead of sending out real emails the console backend just writes the emails that would be sent to the standard output.
+By default, the console backend writes to stdout.
+You can use a different stream-like object by providing the stream keyword argument when constructing the connection.
+
+To specify this backend, put the following in your settings:"""
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False

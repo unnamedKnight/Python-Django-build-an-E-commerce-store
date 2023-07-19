@@ -9,16 +9,18 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(CreateUserForm, self).__init__(*args, **kwargs)
 
+        self.fields["email"].required = True
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
+        email = self.cleaned_data.get("email")
 
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('User with this email already exists')
+            raise forms.ValidationError("User with this email already exists")
 
-        if len(email >= 350):
-            raise forms.ValidationError('Email is too long.')
+        if len(email) >= 350:
+            raise forms.ValidationError("Email is too long.")
+
+        return email
