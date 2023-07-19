@@ -61,7 +61,7 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        {% comment %} <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'register' %}">Register</a> {% endcomment %}
+                        <a class="btn btn-alert navbar-btn text-white" type="button" href="{% url 'register' %}">Register</a>
                     </li>
                 {% endif %}
                 {% if user.is_authenticated %}

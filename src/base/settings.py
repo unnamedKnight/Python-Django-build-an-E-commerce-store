@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # project applications
     "store.apps.StoreConfig",
     "cart.apps.CartConfig",
+    "account.apps.AccountConfig",
 ]
 
 MIDDLEWARE = [
