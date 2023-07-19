@@ -48,11 +48,11 @@
                                             <br>
                                             <br>
                                             <button type="button"
-                                                    id="update-button"
+                                                    data-index="{{ product.id }}"
                                                     class="btn btn-primary btn-sm update-button">Update</button>
                                             &nbsp;
                                             <button type="button"
-                                                    id="delete-button"
+                                                    data-index="{{ product.id }}"
                                                     class="btn btn-danger btn-sm delete-button">Delete</button>
                                         </div>
                                     </div>
@@ -65,13 +65,94 @@
             <div class="col-12 text-end">
                 <div class="h6 fw-bold">
                     Sub total: $
-                    <div id="subtotal" class="d-inline-flex">
-                       {{ cart.get_total }}
-                    </div>
+                    <div id="subtotal" class="d-inline-flex">{{ cart.get_total }}</div>
                 </div>
             </div>
         </div>
         <br>
         <br>
     </main>
+    <script>
+    // delete button
+
+   /* $(document).on('click', '.delete-button', function(e){
+
+        e.preventDefault();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart_delete" %}',
+            data: {
+
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+
+                document.getElementById("cart-qty").textContent = json.quantity
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+
+
+            }
+
+    });
+
+
+    })
+    */
+
+
+    $(document).on('click', '.delete-button', function(e){
+
+        e.preventDefault();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart_delete" %}',
+            data: {
+
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                //console.log(json)
+
+                location.reload();
+
+
+                document.getElementById("cart-qty").textContent = json.quantity
+
+                //document.getElementById("total").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+
+
+            }
+
+        });
+
+
+    })
+
+
+
+    </script>
 {% endblock %}

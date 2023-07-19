@@ -27,6 +27,13 @@ class Cart:
 
         self.session.modified = True
 
+    def delete(self, product_id):
+        product_id = str(product_id)
+        if product_id in self.cart:
+            del self.cart[product_id]
+
+        self.session.modified = True
+
     def __len__(self):
         return sum(item["quantity"] for item in self.cart.values())
 
@@ -46,4 +53,9 @@ class Cart:
             yield item
 
     def get_total(self):
-        return sum((item["total"] for item in self.cart.values()))
+        return sum(
+            (
+                Decimal(item["price"]) * Decimal(item["quantity"])
+                for item in self.cart.values()
+            )
+        )
