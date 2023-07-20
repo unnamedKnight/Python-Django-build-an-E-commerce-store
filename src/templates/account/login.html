@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -30,7 +30,7 @@
                     <a href="{% url 'register' %}">Don't have an account?</a>
                     <br>
                     <br>
-                    {% comment %} <a href="{% url 'reset_password' %}">Forgotten your password?</a> {% endcomment %}
+                    <a href="{% url 'reset_password' %}">Forgot password?</a>
                 </div>
             </form>
         </div>
