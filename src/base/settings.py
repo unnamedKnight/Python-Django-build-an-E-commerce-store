@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "store.apps.StoreConfig",
     "cart.apps.CartConfig",
     "account.apps.AccountConfig",
+    "payment.apps.PaymentConfig",
     # third party packages
     "crispy_forms",
     "crispy_bootstrap4",
