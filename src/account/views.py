@@ -91,36 +91,47 @@ def user_login(request):
 
 @login_required(login_url="login")
 def user_logout(request):
-    auth.logout(request)
+    # when a user is logged out his session is deleted so is his cart data
+    # by doing the following we are saving shopping cart data
+    # even the user is logged out
+    try:
+        for key in list(request.session.keys()):
+            if key == "session_key":
+                continue
+
+            else:
+                del request.session[key]
+
+    except KeyError:
+        pass
+
     return redirect("store")
 
 
 @login_required(login_url="login")
 def dashboard(request):
-    return render(request, 'account/dashboard.html')
-
+    return render(request, "account/dashboard.html")
 
 
 @login_required(login_url="login")
 def profile_management(request):
     form = UpdateUserForm(instance=request.user)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UpdateUserForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect("dashboard")
     context = {
-        'form': form,
+        "form": form,
     }
 
-    return render(request, 'account/profile_management.html', context)
-
+    return render(request, "account/profile_management.html", context)
 
 
 @login_required(login_url="login")
 def delete_account(request):
     user = User.objects.get(id=request.user.id)
-    if request.method == 'POST':
+    if request.method == "POST":
         user.delete()
-        return redirect('store')
-    return render(request, 'account/delete_account.html')
+        return redirect("store")
+    return render(request, "account/delete_account.html")
