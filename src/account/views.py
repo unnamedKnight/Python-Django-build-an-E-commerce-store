@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from .token import user_tokenizer_generate
-from .forms import CreateUserForm, LoginForm
+from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
 
 # Create your views here.
@@ -104,7 +104,17 @@ def dashboard(request):
 
 @login_required(login_url="login")
 def profile_management(request):
-    return render(request, 'account/profile_management.html')
+    form = UpdateUserForm(instance=request.user)
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'account/profile_management.html', context)
 
 
 
