@@ -13,14 +13,25 @@
             <h3>Login to your account.</h3>
             <br>
             <br>
-            <form action="{% url 'register' %}" method="post" authocomplete='off'>
+            <form method="post" authocomplete='off'>
                 {% csrf_token %}
                 {{ form.username|as_crispy_field }}
                 <br>
                 {{ form.password|as_crispy_field }}
                 <br>
                 <br>
-                <button type="submit" class='btn btn-secondary  btn-lg w-100 btn-block'>&nbsp; Login</button>
+                <button type="submit" class='btn btn-primary navbar-btn text-white w-100 p-2'>
+                    <i class="fa fa-key" aria-hidden="true"></i> &nbsp; Login
+                </button>
+                <br>
+                <br>
+                {{ form.non_field_errors }}
+                <div class="text-center">
+                    <a href="{% url 'register' %}">Don't have an account?</a>
+                    <br>
+                    <br>
+                    {% comment %} <a href="{% url 'reset_password' %}">Forgotten your password?</a> {% endcomment %}
+                </div>
             </form>
         </div>
     </body>

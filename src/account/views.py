@@ -72,7 +72,6 @@ def email_verification_failed(request):
     return render(request, "account/email_verification_failed.html")
 
 
-@login_required(login_url="login")
 def user_login(request):
     form = LoginForm()
     if request.method == "POST":
