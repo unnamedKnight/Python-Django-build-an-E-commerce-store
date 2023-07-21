@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
     <style>
-
     body
     {
 
@@ -103,5 +102,77 @@
         <br>
     </body>
     <!-- Ajax integration -->
-    <script></script>
+    <script>
+        // Total price
+
+        var total_price = '{{cart.get_total}}';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Complete checkout
+
+
+        $(document).on('submit',  function(e){
+
+            e.preventDefault();
+
+            $.ajax({
+
+                type: 'POST',
+                url: '{% url "complete_order" %}',
+                data: {
+
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+
+                    address1: $('#address1').val(),
+                    address2: $('#address2').val(),
+                    city: $('#city').val(),
+
+                    state: $('#state').val(),
+                    zipcode: $('#zipcode').val(),
+
+
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+
+                },
+
+                success: function(json){
+
+                    //console.log(json)
+
+                    window.location.replace("{% url 'payment_success' %}");
+
+
+                },
+
+                error: function(xhr, errmsg, err){
+
+                    window.location.replace("{% url 'payment_failed' %}");
+
+                }
+
+            });
+
+
+        })
+
+
+
+
+    </script>
 {% endblock %}
