@@ -66,6 +66,8 @@
                 <div class="h6 fw-bold">
                     Sub total: $
                     <div id="subtotal" class="d-inline-flex">{{ cart.get_total }}</div>
+                    <br>
+                    <a href="{% url 'checkout' %}" class=' btn btn-primary my-2'></a>
                 </div>
             </div>
         </div>
