@@ -66,4 +66,7 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+
+    # manage shipping
+    path('manage-shipping', views.manage_shipping, name='manage_shipping'),
 ]

@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .token import user_tokenizer_generate
 from .forms import CreateUserForm, LoginForm, UpdateUserForm
-
+from payment.models import ShippingAddress
+from payment.forms import ShippingForm
 
 # Create your views here.
 
@@ -135,3 +136,32 @@ def delete_account(request):
         user.delete()
         return redirect("store")
     return render(request, "account/delete_account.html")
+
+
+# - Shipping View
+
+
+@login_required(login_url="login")
+def manage_shipping(request):
+    try:
+        # user account with shipping information
+        shipping = ShippingAddress.objects.get(user=request.user)
+
+    except ShippingAddress.DoesNotExist:
+        # user account with no shipping information
+        shipping = None
+
+    form = ShippingForm(instance=shipping)
+
+    if request.method == "POST":
+        form = ShippingForm(request.POST, instance=shipping)
+        if form.is_valid():
+            shipping_form = form.save(commit=False)
+            shipping_form.user = request.user
+            shipping_form.save()
+            return redirect("dashboard")
+
+    context = {
+        "form": form,
+    }
+    return render(request, "account/manage_shipping.html", context)
